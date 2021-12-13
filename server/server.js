@@ -5,7 +5,7 @@ const journalRoutes = require("../server/controller/journal")
 
 app.use(bodyParser.json());
 
-app.use("/journal", journalRoutes)
-app.get("/", (req, res) => res.send("Testing page working"))
+app.use("/", journalRoutes)
+
 
 module.exports = app;

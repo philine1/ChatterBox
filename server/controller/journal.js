@@ -1,10 +1,11 @@
-const express = require("express")
+const express = require("express");
+const journalEntries = require("../data");
 const router = express.Router();
-const journalData = require("../data")
+const journalEntries = require("../data")
 
 //all routes starting with "/journal"
 router.get("/" , (req,res) => {
-    res.send(journalData)
+    res.send(journalEntries)
 })
 
 module.exports = router;
