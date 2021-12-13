@@ -13,7 +13,25 @@ router.get("/journal" , (req,res) => {
     res.send(journalData)
 })
 
-// router.get()
+
+// route for retrieving journal entries by id
+router.get("/journal/:id", (req,res) => {
+    res.send(journalData[req.params.id -1])
+})
+
+// route for retrieving specific emoji reaction by id
+router.get("/journal/:id/emoji/:emojiid", (req,res) => {
+    res.send(journalData[req.params.id -1].emoji[req.params.emojiid -1])
+})
+
+// route for retrieving all comments
+router.get("/journal/:id/comment", (req,res) => {
+    res.send(journalData[req.params.id -1].comments)
+})
+
+// router.get("/journal/:id/comment/:commentid", (req,res) => {
+//     res.send(journalData[req.params.id -1].comments)
+// })
 
 //adding journal entries to our database
 router.post("/journal", (req,res) => {
