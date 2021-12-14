@@ -21,12 +21,19 @@ class journalEntry {
         const newEntry = new journalEntry({
             id: journalData.length + 1,
             ...entry,
-            data: time
+            date: time
         })
         journalData.push(newEntry)
         return newEntry
     }
 
+    getId(id) {
+        id <= 0 ? console.log("no entries with id") : journalData[id-1]
+    }
+
+    addEmoji(id, emojiId, emojiCounter) {
+        const emojiCount = parseInt
+    }
     addComment(id, data) {
         const commentEntry = data.comment
         const currentEntry = journalData[id-1]

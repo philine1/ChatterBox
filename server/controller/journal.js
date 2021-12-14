@@ -44,6 +44,26 @@ router.post("/journal", (req,res) => {
     res.send(`${data.author} has added a new journal entry!`);
 })
 
+router.patch("/journal/:id/emoji/:emojiid", (req,res) => {
+    const 
+})
+
+
+
+
+
+
+
+
+
+
+//deleting journal entries
+// router.delete("/journal/:id", (req,res) => {
+//     const {id} = req.params;
+//     journalData = journalData.filter((entries) => entries.id !== id) 
+//     res.send(`Entry with the id ${id} deleted from the journal`)
+// })
+
 
 
 module.exports = router;
