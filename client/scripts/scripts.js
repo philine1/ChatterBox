@@ -42,7 +42,7 @@ function addEntry(e) {
         })
     }
     fetch("http://localhost:3000/journal", options)
-    
+    window.location.reload()
    
 }
 
@@ -63,6 +63,7 @@ async function makeFeed() {
 
         author.textContent = entriesData[i].author
         message.textContent = entriesData[i].message
+        entry.classList.add("entrybox")
         
         entry.appendChild(body)
         body.appendChild(author)
