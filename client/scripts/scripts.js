@@ -7,7 +7,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     const message = formData.get("message")
-    const name = formData.get("search")
+    const name = formData.get("search") // search targets the gif api
 
     const chat = {
         message,
