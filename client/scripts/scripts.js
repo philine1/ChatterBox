@@ -17,3 +17,22 @@ form.addEventListener('submit', (e) => {
     console.log(chat);
     
 });
+
+function sendApiRequest(){
+    var userInput = document.getElementById("input").value
+    console.log(userInput)
+    
+    var apiKey = "TENxQhBa7uKAOVCw0FQBLIpzRrl1yeEF"
+    var giphyURL = `"http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=${apiKey}&limit=5"`
+    
+    fetch(giphyURL).then(function(data){
+      return data.JSON()
+    })
+    .then(function(json){
+      console.log(json.data[0].images.fixed_height.url) 
+      var imgPath = json.data[0].images.fixed_height.url
+      var img = document.createElement("img")
+      img.setAttribute("src", imgPath)
+      document.body.appendChild(img)
+    })
+  }
