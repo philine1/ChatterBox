@@ -22,6 +22,9 @@ class journalEntry {
         const newEntry = new journalEntry({
             id: journalData.length + 1,
             ...entry,
+            emoji: [
+                {id: 1, counter: 0}, {id: 2, counter: 0}, {id: 3, counter: 0}
+            ],
             date: time
         })
         journalData.push(newEntry)
