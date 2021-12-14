@@ -1,7 +1,5 @@
-
 const form = document.querySelector('form');
-const chatsFeed = document.querySelector('.chats')
-const API_URL = 'http://localhost:3000/chat';
+const chatsFeed = document.querySelector('.chats');
 
 
 // This event listener gets user input from the form in index.html
@@ -18,4 +16,4 @@ form.addEventListener('submit', (e) => {
 
     console.log(chat);
     
-}
+});

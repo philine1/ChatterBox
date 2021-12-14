@@ -1,30 +1,13 @@
-const express = require('express');
-const app = express();
-const port = 3000;
-const cors = require('cors'); 
-const bodyParser = require('body-parser');
+const express = require("express")
+const app = express()
+const bodyParser = require("body-parser");
+const journalRoutes = require("../server/controller/journal")
+const cors = require("cors")
 
 app.use(bodyParser.json());
+app.use(express.json())
 app.use(cors());
-
-// Route for localhost
-app.get('/', (req, res) =>{
-    res.json({
-        message: 'Hello'
-    });
-});
+app.use("/", journalRoutes)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-app.listen(port, console.log(`App Listening on http://localhost: ${port}`));
+module.exports = app;

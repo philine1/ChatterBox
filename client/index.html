@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/scripts.js" defer></script>
+    <title>Chatter Box</title>
+</head>
+<body>
+    <header>
+        <div class="container jumbotron text-center">
+            <h1 class="text-center">Chatter Box - lets Chat!😎</h1>
+        </div>
+    </header>
+    <main>
+        <section id="Comments">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="" class="chat-form">
+                            <div class="form-group">
+                                <label class="font-weight-bold" id="chat-name" for="name">Name:</label>
+                                <input class="form-control" id="name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold" id="chat-message" for="message">Message:</label>
+                                <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                        </form>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </section>
+        <section id="feed">
+            <div class="container" >
+                <div class="row">
+                    <div class="col chats">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    
+</body>
+</html>
