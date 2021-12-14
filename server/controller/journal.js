@@ -25,8 +25,8 @@ router.get("/journal/:id/emoji/:emojiid", (req,res) => {
 })
 
 // route for retrieving all comments
-router.get("/journal/:id/comment", (req,res) => {
-    res.send(journalData[req.params.id -1].comments)
+router.get("/journal/:id/comments", (req,res) => {
+    res.send(journalData[req.params.id -1].comment)
 })
 
 // router.get("/journal/:id/comment/:commentid", (req,res) => {
@@ -44,16 +44,24 @@ router.post("/journal", (req,res) => {
     res.send(`${data.author} has added a new journal entry!`);
 })
 
-router.patch("/journal/:id/emoji/:emojiid", (req,res) => {
-    const 
+router.patch("/journal/:id/comments", (req,res) => {
+    const commentData = req.body
+    const id = req.params.id
+    const updateEntry = new journalEntry(journalEntry.getId(id))
+    console.log("hi")
+    updateEntry.addComment(id, commentData)
+    res.send("new comment created")
 })
 
-
-
-
-
-
-
+router.patch("/journal/:id/emoji/:emojiid", (req,res) => {
+    const data = req.body
+    const id = req.params.id
+    const emojiId = req.params.emojiid
+    const updateEntry = new journalEntry(journalEntry.getId(id))
+    console.log(updateEntry)
+    updateEntry.addEmoji(id, emojiId, data)
+    res.send("emoji added to entry")
+})
 
 
 
