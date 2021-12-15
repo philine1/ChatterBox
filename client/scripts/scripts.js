@@ -1,3 +1,4 @@
+const emojiOptions = ["😀", "😃", "😀"];
 const form = document.querySelector('form');
 const chatsFeed = document.querySelector('.chats');
 
@@ -18,18 +19,25 @@ async function allEntries() {
     return data
 }
 
+function randomNumGenerator() {
+    return Math.floor(Math.random()*100) + Math.floor(Math.random()*100)
+}
+
 function addEntry(e) {
     e.preventDefault();
     
     const postEntry = document.getElementById("message").value
-    const name = document.getElementById("name").value
-    // const body = { 
-    //     message: postEntry,
-    //     author: name
-    // }
+    let name = document.getElementById("name").value
+    if (name == "") {
+        name = "Anonymous-user" + "-" + randomNumGenerator()
+    }
+    if (postEntry == "") {
+        return alert("Please enter a message") 
+    }
+   
     console.log(postEntry)
     console.log(name)
-
+  
     const options = {
         method: "POST",
         headers: {
@@ -59,17 +67,16 @@ async function makeFeed() {
         const author = document.createElement("h3")
         const body = document.createElement("div")
         const message = document.createElement("p")
-        const emoji = document.createElement("div")
 
         author.textContent = entriesData[i].author
         message.textContent = entriesData[i].message
         entry.classList.add("entrybox")
-        
+
         entry.appendChild(body)
         body.appendChild(author)
-        body.appendChild(message)
-        body.appendChild(emoji)     
+        body.appendChild(message)  
         entriesFeed.appendChild(entry)   
-    }
-    
+  
+    }   
 }
+
