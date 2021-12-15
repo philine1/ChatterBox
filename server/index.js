@@ -1,12 +1,9 @@
+const server = require("./server")
 const express =require("express")
 const app = express ()
 
 
 
 
-app.get("/", function(req, res) {
-    res.send("Testing page working")
-})
-
-// Heroku port/ local
-app.listen(process.env.PORT || 3000)
+// Heroku port/local
+server.listen(process.env.PORT || 3000, () => console.log("https://www.localhost:3000.com"))
