@@ -5,10 +5,23 @@ const index = require('../server/index')  // may not need although server starti
 
 
 describe('API endpoint tests', () => {
-  let api;
-    // initialise journalEntry 
 
-    // initialise comment 
+    let api;
+    // initialise journalEntry message 
+    let testMessage = { 
+    author:'Test User', 
+    message:' Testing saying Hello world!'
+    }
+
+    // initialise comment message
+    
+    let testComment = {
+        comment: [{
+            author:'Test User giving comments', 
+            message:'This is a comments to journal'
+        }]
+    }
+ 
 
 
     beforeAll(() => {
@@ -40,14 +53,39 @@ describe('API endpoint tests', () => {
     });
 
     // testing route for GET all comments for a journal entry 
-    it('responds to get /journal/:id/emoji/:emojiid with status of 200', (done) =>{
+    it('responds to get /journal/:id/comments with correct comments for a journal and status of 200', (done) =>{
         request(api)
             .get ('/journal/1/comments') 
             .expect(200,done)
         // need a test to check no of rows returned 
             
     });
-    
+
+    // POST Tests 
+
+    // Add a new Journal Entry Message test 
+    it('responds to post /journal with status 201', (done) => {
+        request(api)
+            .post('/journal')
+            .send(testMessage)
+            .expect(201)
+            // testing id: set and date: set and message added
+            .expect({id:3, ...testMessage},done) //new Journal message record added
+   // test for all emoji counters set to 0 
+   // test nothing in comments array 
+
+        });
+
+      // Add a new Journal Entry comment to journal entry 1 test 
+      it('responds to post /journal/id:/comment with status 201', (done) => {
+        request(api)
+            .post('/journal/1/comment')
+            .send(testComment)
+            .expect(201)
+            .expect({id:3, ...testComment},done)
+    });
+
+
     
 
 
