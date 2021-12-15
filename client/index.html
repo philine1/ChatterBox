@@ -23,7 +23,30 @@
                         <form action="" class="chat-form">
                             <div class="form-group">
                                 <label class="font-weight-bold" id="chat-message" for="message">Message:</label>
-                                <textarea class="form-control" rows="5" id="message" name="message" maxlength="500"></textarea>
+                                <textarea class="form-control" rows="5" id="my-textarea" name="message" maxlength="150"></textarea>
+
+                                <!-- <textarea id="my-textarea"></textarea> -->
+                                <div id="my-textarea-remaining-chars">150 characters remaining</div>
+
+                            <script>
+                                   const myTextArea = document.getElementById("my-textarea");
+                                   const remainingCharsText = document.getElementById("my-textarea-remaining-chars");
+                                   const MAX_CHARS = 150;
+
+                                    myTextArea.addEventListener("input", ()  =>{
+                
+                                const remaining = MAX_CHARS - myTextArea.value.length;
+                                 // console.log(remaining);
+                
+                                const color = remaining < MAX_CHARS * 0.1 ? 'red' : null;
+                                remainingCharsText.textContent = `${remaining} characters remaining`;
+                                remainingCharsText.style.color = color;
+                                });
+                            </script>
+
+
+
+
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" id="gif-search" for="search">Add a Gif!:</label>
