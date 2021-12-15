@@ -1,75 +1,127 @@
-
-
+const emojiOptions = ["😀", "😃", "😀"];
 const form = document.querySelector('form');
 const chatsFeed = document.querySelector('.chats');
+const apiKey = "74d7MBRbZL0YmhJiyOtbVF20N7j0XfUx"
+let fig = document.createElement("figure");
+let img = document.createElement("img");
 
 
-// This event listener gets user input from the form in index.html
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const message = formData.get("message")
-    const gif = formData.get("search") // search targets the gif api
+// event listener gets user input from the form in index.html
+form.addEventListener('submit',  (e) =>addEntry(e))
 
-    const chat = {
-        message,
-        gif
-    };
+load();
 
-    console.log(chat);
-    
-});
+function load() {
+    makeFeed();
+}
+
+async function allEntries() {
+    const postEntry = await fetch("http://localhost:3000/journal")
+    const data = await postEntry.json();
+    return data
+}
+
+function randomNumGenerator() {
+    return Math.floor(Math.random()*100) + Math.floor(Math.random()*100)
+}
 
 // function to retrieve an API
 document.addEventListener("DOMContentLoaded", sendApiRequest);
 function sendApiRequest(){
    
-    
     document.getElementById("btnSearch").addEventListener("click", e => {
         e.preventDefault();
         
-        var apiKey = "74d7MBRbZL0YmhJiyOtbVF20N7j0XfUx"
-        var userInput = document.getElementById("search").value.trim();
+        
+        let userInput = document.getElementById("search").value.trim();
         console.log(userInput)
-        var giphyURL = `http://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=5&q=`
+        let giphyURL = `http://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=5&q=`
         giphyURL = giphyURL.concat(userInput)
-        console.log(giphyURL);
+        // console.log(giphyURL);
 
         fetch(giphyURL)
             .then(response => response.json())
             .then(content => {
-                // DataTransfer, pagination, meta
-                console.log(content.data);
-                console.log("META", content.meta);
-                let fig = document.createElement("figure");
-                let img = document.createElement("img");
-                // let fc = document.createElement("figcaption");
+                // data, pagination, meta
+                // console.log(content.data);
+                // console.log("META", content.meta);
                 img.src = content.data[Math.floor(Math.random() * 5)].images.downsized.url;
                 img.alt = content.data[0].title;
-                // fc.textContent = content.data[0].title;
                 fig.appendChild(img);
-                // fig.appendChild(fc);
-                let out = document.querySelector("#out");
-                out.insertAdjacentElement("afterbegin", fig);
+                let feedbox = document.querySelector("#feedbox");
+                feedbox.insertAdjacentElement("afterbegin", fig);
                 document.querySelector("#search").value = "";
-
-
-
                        
             })
             .catch(err =>{
                 console.log(err)
             })
         
-        // fetch(giphyURL).then(function(data){
-        //       return data.JSON()
-        //     })
-        //     .then(function(json){
-        //           console.log(json.data[0].images.fixed_height.url) 
-        //           var imgPath = json.data[0].images.fixed_height.url
-        //           var img = document.createElement("img")
-        //           img.setAttribute("src", imgPath)
-        //           document.body.appendChild(img)
                 
             })
   };
+
+
+function addEntry(e) {
+    e.preventDefault();
+    
+    const postEntry = document.getElementById("message").value
+    let name = document.getElementById("name").value
+    if (name == "") {
+        name = "Anonymous-user" + "-" + randomNumGenerator()
+    }
+    if (postEntry == "") {
+        return alert("Please enter a message") 
+    }
+   
+    console.log(img.src)
+    console.log(postEntry)
+    console.log(name)
+  
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+            author: name,
+            message: postEntry,
+            gif: img.src,
+            comment: []  
+        })
+    }
+    fetch("http://localhost:3000/journal", options)
+    window.location.reload()
+   
+}
+
+
+async function makeFeed() {
+    const entries = await fetch("http://localhost:3000/journal")
+    let entriesData = await entries.json();
+    console.log(entriesData)
+    const entriesFeed = document.getElementById("feedbox")
+    entriesFeed.textContent = "";
+    for(let i= entriesData.length -1; i>=0; i--) {
+
+        const entry = document.createElement("div")
+        const author = document.createElement("h3")
+        const body = document.createElement("div")
+        const message = document.createElement("p")
+        const gif = document.createElement("img");
+
+        author.textContent = entriesData[i].author
+        message.textContent = entriesData[i].message
+        gif.src= entriesData[i].gif
+
+        entry.classList.add("entrybox")
+
+        entry.appendChild(body)
+        body.appendChild(author)
+        body.appendChild(message)
+        body.appendChild(gif)
+        entriesFeed.appendChild(entry)   
+  
+    }   
+}
+
