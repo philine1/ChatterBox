@@ -6,6 +6,7 @@ let fig = document.createElement("figure");
 let img = document.createElement("img");
 
 
+
 // event listener gets user input from the form in index.html
 form.addEventListener('submit',  (e) =>addEntry(e))
 
@@ -25,7 +26,7 @@ function randomNumGenerator() {
     return Math.floor(Math.random()*100) + Math.floor(Math.random()*100)
 }
 
-// function to retrieve an API
+// function to retrieve Gify API
 document.addEventListener("DOMContentLoaded", sendApiRequest);
 function sendApiRequest(){
    
@@ -42,8 +43,8 @@ function sendApiRequest(){
         fetch(giphyURL)
             .then(response => response.json())
             .then(content => {
-                // data, pagination, meta
-                // console.log(content.data);
+                // data, pagination, meta (shows array of properties from Gify API)
+                // console.log(content.data); 
                 // console.log("META", content.meta);
                 img.src = content.data[Math.floor(Math.random() * 5)].images.downsized.url;
                 img.alt = content.data[0].title;
@@ -125,3 +126,17 @@ async function makeFeed() {
     }   
 }
 
+// text remaining function
+const myTextArea = document.getElementById("message");
+const remainingCharsText = document.getElementById("my-textarea-remaining-chars");
+const MAX_CHARS = 150;
+
+myTextArea.addEventListener("input", ()  =>{
+                
+const remaining = MAX_CHARS - myTextArea.value.length;
+// console.log(remaining);
+                
+const color = remaining < MAX_CHARS * 0.1 ? 'red' : null;
+remainingCharsText.textContent = `${remaining} characters remaining`;
+remainingCharsText.style.color = color;
+});
