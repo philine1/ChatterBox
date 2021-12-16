@@ -17,7 +17,7 @@ function load() {
 }
 
 async function allEntries() {
-    const postEntry = await fetch("http://localhost:3000/journal")
+    const postEntry = await fetch("https://chatterbox-1.herokuapp.com/journal")
     const data = await postEntry.json();
     return data
 }
@@ -38,7 +38,7 @@ function sendApiRequest(){
 
         
         let userInput = document.getElementById("search").value.trim();
-        console.log(userInput)
+        // console.log(userInput)
         let giphyURL = `http://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=5&q=`
         giphyURL = giphyURL.concat(userInput)
         // console.log(giphyURL);
@@ -78,9 +78,9 @@ function addEntry(e) {
         return alert("Please enter a message") 
     }
    
-    console.log(img.src)
-    console.log(postEntry)
-    console.log(name)
+    // console.log(img.src)
+    // console.log(postEntry)
+    // console.log(name)
   
     const options = {
         method: "POST",
@@ -94,16 +94,48 @@ function addEntry(e) {
             comment: []  
         })
     }
-    fetch("http://localhost:3000/journal", options)
-    window.location.reload()
+    fetch("https://chatterbox-1.herokuapp.com/journal", options)
+    // window.location.reload()
+    setTimeout(() => {
+        window.location.reload()
+    }, 500);
    
 }
 
+function addComment(postId, input) {
+    const commentEntry = document.getElementById("commentsInput").value
+
+    if (input == "") {
+        return alert("Please enter a message") 
+    }
+   
+    const options = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+            author: "Annonymous" + randomNumGenerator(),
+            message: input
+        })
+    }
+    fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}/comments`, options)
+    setTimeout(() => {
+        window.location.reload()
+    }, 500);
+   
+}
+
+// async function getEmojiCount(postId) {
+//     const result = fetch(`http://localhost:3000/journal/${postId}`)
+//     console.log(result)
+// }
+
 
 async function makeFeed() {
-    const entries = await fetch("http://localhost:3000/journal")
+    const entries = await fetch("https://chatterbox-1.herokuapp.com/journal")
     let entriesData = await entries.json();
-    console.log(entriesData)
+    // console.log(entriesData)
     const entriesFeed = document.getElementById("feedbox")
     entriesFeed.textContent = "";
     for(let i= entriesData.length -1; i>=0; i--) {
@@ -113,19 +145,167 @@ async function makeFeed() {
         const body = document.createElement("div")
         const message = document.createElement("p")
         const gif = document.createElement("img");
+        const time = document.createElement("span")
 
-        author.textContent = entriesData[i].author
+        //emoji
+        const emojiDiv =document.createElement("div")
+        const emoji1Button = document.createElement("button")
+        const emoji2Button = document.createElement("button")
+        const emoji3Button = document.createElement("button")
+        const emoji1count = document.createElement("p")
+        const emoji2count = document.createElement("p")
+        const emoji3count = document.createElement("p")
+
+        emoji1Button.textContent = emojiOptions[0]
+        emoji2Button.textContent = emojiOptions[1]
+        emoji3Button.textContent = emojiOptions[2]
+
+        
+        // comments
+        const commentsDiv = document.createElement("div")
+        const commentsInput = document.createElement("input")
+        const commentsBtn = document.createElement("button")
+        const unhideComments = document.createElement("button")
+        unhideComments.textContent = "🗨"
+        const commentsCount = document.createElement("p")
+
+        // unhideComments.setAttribute("id",`unhideComments${postId}`)
+      
+        commentsInput.setAttribute("id", "commentsInput")
+        commentsBtn.setAttribute("id","commentsSubmit")
+        commentsInput.type = "text"
+        commentsBtn.textContent = "Add Comment"
+        const commentsEntryDiv = document.createElement("div")
+
+
+        author.textContent = "Posted by: " + entriesData[i].author
+        time.textContent= " • " + entriesData[i].date
         message.textContent = entriesData[i].message
         gif.src= entriesData[i].gif
 
+        const postId = entriesData[i].id
+        entry.setAttribute("id",`${postId}`)
         entry.classList.add("entrybox")
-
+        time.classList.add("timePosted")
+        commentsInput.classList.add("commentsInput")
+        commentsDiv.classList.add("commentsDiv")
+        
         entry.appendChild(body)
+        author.appendChild(time)
         body.appendChild(author)
         body.appendChild(message)
         body.appendChild(gif)
         entriesFeed.appendChild(entry)   
-  
+
+        //emoji 
+        emojiDiv.appendChild(unhideComments)
+        emojiDiv.appendChild(commentsCount)
+        emojiDiv.appendChild(emoji1Button)
+        emojiDiv.appendChild(emoji1count)
+        emojiDiv.appendChild(emoji2Button)
+        emojiDiv.appendChild(emoji2count)
+        emojiDiv.appendChild(emoji3Button)
+        emojiDiv.appendChild(emoji3count)
+
+        // comments
+        entry.appendChild(emojiDiv)
+        entry.appendChild(commentsDiv)
+        commentsDiv.appendChild(commentsInput)
+        commentsDiv.appendChild(commentsBtn)
+        commentsDiv.appendChild(commentsEntryDiv)
+
+        commentsDiv.setAttribute("id", `commentsDiv${postId}`)
+        commentsDiv.classList.add("hidden")
+
+        unhideComments.addEventListener("click", (e) => {
+            e.preventDefault()
+            const targetCommentsDiv = document.getElementById(`commentsDiv${postId}`)
+            commentsDiv.classList.toggle("hidden")
+        })
+
+        commentsBtn.addEventListener("click",(e) => {
+            e.preventDefault()
+            // console.log(e)
+            const input = e.target.previousSibling.value
+            addComment(postId, input)
+        })
+        const result = await fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}`)   
+        const data = await result.json()
+        console.log(data)
+        emoji1count.textContent = data.emoji[0].counter
+        emoji2count.textContent = data.emoji[1].counter
+        emoji3count.textContent = data.emoji[2].counter
+        commentsCount.textContent = data.comment.length
+
+        emoji1Button.addEventListener("click", async (e) => {
+            e.preventDefault()
+            const options = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ 
+                    id: postId, 
+                    emojiId: 1,
+                    count: data.emoji[0].counter
+                    
+                })
+            }
+            fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}/emoji/1`, options)
+            emoji1count.textContent = data.emoji[0].counter + 1
+        })   
+        emoji2Button.addEventListener("click", async (e) => {
+            e.preventDefault()
+            const options = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ 
+                    id: postId, 
+                    emojiId: 2,
+                    count: data.emoji[1].counter
+                    
+                })
+            }
+            fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}/emoji/2`, options)
+            emoji2count.textContent = data.emoji[1].counter + 1
+        })  
+        emoji3Button.addEventListener("click", async (e) => {
+            e.preventDefault()
+            const options = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ 
+                    id: postId, 
+                    emojiId: 3,
+                    count: data.emoji[2].counter
+                    
+                })
+            }
+            fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}/emoji/3`, options)
+            emoji3count.textContent = data.emoji[2].counter + 1
+        })  
+
+        for(let j = 0; j<entriesData[i].comment.length; j++) {
+            const commentsMessage = document.createElement("p")
+            const commentsMessageDiv = document.createElement("div")
+            const commentsMessageAuthor = document.createElement("p")
+
+            // console.log(entriesData[i].comment)
+            
+            commentsEntryDiv.appendChild(commentsMessageDiv)
+            commentsMessageDiv.appendChild(commentsMessageAuthor)
+            commentsMessageDiv.appendChild(commentsMessage)
+            commentsMessageDiv.classList.add("commentsMsgDiv")
+
+            commentsMessageAuthor.textContent = entriesData[i].comment[j].author
+            commentsMessage.textContent = entriesData[i].comment[j].message
+            
+        }
+
     }   
 }
 
