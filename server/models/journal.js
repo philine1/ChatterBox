@@ -1,10 +1,14 @@
 const journalData = require("../data");
 const dayjs = require("dayjs");
+var relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime)
+
 
 class journalEntry {
     constructor(entry) {
         this.id = entry.id
         this.author = entry.author
+        this.gif = entry.gif
         this.comment = entry.comment
         this.emoji = entry.emoji
         this.date = entry.date
@@ -18,7 +22,7 @@ class journalEntry {
 
     // Method for creating a new entry
     static createEntry(entry) {
-        const time = dayjs().toString();
+        const time = dayjs().fromNow().toString();
         const newEntry = new journalEntry({
             id: journalData.length + 1,
             ...entry,
@@ -44,8 +48,9 @@ class journalEntry {
     // function to increase emoji
     addEmoji(id, emojiId, data) {
         const emojiCount = parseInt(data.count)
+      
         const currentEntry = journalData[id-1]
-        currentEntry.emoji[emojiId-1].count = emojiCount + 1;
+        currentEntry.emoji[emojiId-1].counter = emojiCount + 1;
     }
 
     // function to add new comment onto entry
