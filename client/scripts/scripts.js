@@ -96,6 +96,26 @@ function addEntry(e) {
    
 }
 
+function addComment(postId, input) {
+    const commentEntry = document.getElementById("commentsInput").value
+
+    if (input == "") {
+        return alert("Please enter a message") 
+    }
+   
+    const options = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+            author: "Annonymous" + randomNumGenerator(),
+            message: input
+        })
+    }
+    fetch(`http://localhost:3000/journal/${postId}/comments`, options)
+    window.location.reload()
+}
 
 async function makeFeed() {
     const entries = await fetch("http://localhost:3000/journal")
@@ -111,22 +131,70 @@ async function makeFeed() {
         const message = document.createElement("p")
         const gif = document.createElement("img");
         const time = document.createElement("span")
+      
+        // comments
+        const commentsDiv = document.createElement("div")
+        const commentsInput = document.createElement("input")
+        const commentsBtn = document.createElement("button")
+      
+        commentsInput.setAttribute("id", "commentsInput")
+        commentsBtn.setAttribute("id","commentsSubmit")
+        commentsInput.type = "text"
+        commentsBtn.textContent = "Add Comment"
+        const commentsEntryDiv = document.createElement("div")
+
 
         author.textContent = "Posted by: " + entriesData[i].author
         time.textContent= " • " + entriesData[i].date
         message.textContent = entriesData[i].message
         gif.src= entriesData[i].gif
 
+        const postId = entriesData[i].id
+        entry.setAttribute("id",`${postId}`)
         entry.classList.add("entrybox")
         time.classList.add("timePosted")
-
+        commentsInput.classList.add("commentsInput")
+        commentsDiv.classList.add("commentsDiv")
+        
         entry.appendChild(body)
         author.appendChild(time)
         body.appendChild(author)
         body.appendChild(message)
         body.appendChild(gif)
         entriesFeed.appendChild(entry)   
-  
+
+
+        // comments
+        entry.appendChild(commentsDiv)
+        commentsDiv.appendChild(commentsInput)
+        commentsDiv.appendChild(commentsBtn)
+        entry.appendChild(commentsEntryDiv)
+
+
+        commentsBtn.addEventListener("click",(e) => {
+            e.preventDefault()
+            console.log(e)
+            const input = e.target.previousSibling.value
+            addComment(postId, input)
+        })
+
+        for(let j = 0; j<entriesData[i].comment.length; j++) {
+            const commentsMessage = document.createElement("p")
+            const commentsMessageDiv = document.createElement("div")
+            const commentsMessageAuthor = document.createElement("p")
+
+            console.log(entriesData[i].comment)
+            
+            commentsEntryDiv.appendChild(commentsMessageDiv)
+            commentsMessageDiv.appendChild(commentsMessageAuthor)
+            commentsMessageDiv.appendChild(commentsMessage)
+            commentsMessageDiv.classList.add("commentsMsgDiv")
+
+            commentsMessageAuthor.textContent = entriesData[i].comment[j].author
+            commentsMessage.textContent = entriesData[i].comment[j].message
+            
+        }
+
     }   
 }
 

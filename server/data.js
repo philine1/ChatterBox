@@ -37,7 +37,7 @@ let journalEntries = [
         author: "dore xme",
         message: "hello hgello hello!",
         emoji: [
-            {id: 1, count: 0},{id: 2, count: 0},{id: 3, count: 0}],
+            {id: 1, counter: 0},{id: 2, counter: 0},{id: 3, counter: 0}],
         date: "Tue, 28 Dec 2021 19:45:55 GMT"
     }],
     date: "Sun, 23 Dec 2021 15:20:55 GMT"

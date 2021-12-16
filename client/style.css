@@ -6,3 +6,11 @@
 .timePosted {
     font-size: 10px;
 }
+
+.commentsDiv {
+    border: 1px solid red;
+}
+
+.commentsMsgDiv {
+    border: 1px solid green;
+}
