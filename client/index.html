@@ -27,10 +27,15 @@
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" id="chat-message" for="message">Message:</label>
-                                <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+                                <textarea class="form-control" rows="5" id="message" name="message" maxlength="150" placeholder="What's on your mind..."></textarea>
+                            </div>
+                            <div id="my-textarea-remaining-chars">150 characters remaining</div>
+                            <div class="form-group">
+                                <label class="font-weight-bold" id="gif-search" for="search">Add a Gif!:</label>
+                                <input class="form-control" id="search" name="search" type="search">
+                                <button id="btnSearch" class="btn btn-primary">Gif!</button>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
-
                         </form>
                     </div>
 
@@ -41,7 +46,12 @@
         </section>
         <section id="feed">
             <div class="container" >
-                <div class="feedcont" id="feedbox"></div>
+                <div class="row">
+                    <div class="col chats">
+                        <div class="feedcont" id="feedbox"></div>
+
+                    </div>
+                </div>
 
             </div>
 
@@ -53,3 +63,4 @@
     
 </body>
 </html>
+

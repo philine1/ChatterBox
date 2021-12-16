@@ -3,6 +3,7 @@ let journalEntries = [
     id:1, 
     author:'mighty coders', 
     message:'Hello world!',
+    gif: '../client/assets/hello.webp',
     emoji: [
         {id: 1, counter: 60}, {id: 2, counter: 0}, {id: 3, counter: 0}],
     comment: [{
@@ -20,6 +21,7 @@ let journalEntries = [
     id:2, 
     author:'unlucky star', 
     message:'wewqeqweqw world!',
+    gif: '../client/assets/giphy1.gif',
     emoji: [
         {id: 1, counter: 0}, {id: 2, counter: 0}, {id: 3, counter: 0}],
     comment: [{
