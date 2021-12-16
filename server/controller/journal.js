@@ -5,14 +5,13 @@ const journalEntry = require("../models/journal")
 
 //all routes starting with "/journal"
 router.get("/" , (req,res) => {
-    res.send("hi")
+    res.send("hi thsis is chatterbox")
 })
 
 //route for all journal entries data
 router.get("/journal" , (req,res) => {
     res.send(journalData)
 })
-
 
 // route for retrieving journal entries by id
 router.get("/journal/:id", (req,res) => {
