@@ -113,7 +113,7 @@ async function makeFeed() {
         const time = document.createElement("span")
 
         time.textContent= entriesData[i].date
-        author.textContent = "Posted by: " + entriesData[i].author + " " + time.textContent
+        author.textContent = "Posted by: " + entriesData[i].author + " • " +time.textContent
         message.textContent = entriesData[i].message
         gif.src= entriesData[i].gif
 
