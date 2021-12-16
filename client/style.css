@@ -107,9 +107,7 @@ main {
 /* comments row */ 
 
 
-.timePosted {
-    font-size: 10px;
-}
+
 
 .commentsDiv {
     width: 84%;
@@ -139,13 +137,12 @@ main {
 #commentsInput:focus {
     padding-left: 0.4rem;
 }
-
+/* FIX*/
 #commentsSubmit {
     border: none;
     background: transparent;
     font-size: 20px;
     color: white;
-    background: red;
     margin-top: auto;
       
 }
@@ -167,6 +164,29 @@ main {
     display: none;
 }
 
+/* post text */
+
+.postAuthor {
+    font-size: 20px;
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+
+.timePosted {
+    font-size: 16px;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.postMessage {
+    font-size: 20px;
+    right: 20;  
+    width: 80%;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 26px;
+}
 
 
 

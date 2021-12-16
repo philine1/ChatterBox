@@ -199,6 +199,9 @@ async function makeFeed() {
         message.textContent = entriesData[i].message
         gif.src= entriesData[i].gif
 
+        author.classList.add("postAuthor")
+        message.classList.add("postMessage")
+
         const postId = entriesData[i].id
         entry.setAttribute("id",`${postId}`)
         entry.classList.add("entrybox")
