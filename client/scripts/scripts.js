@@ -17,7 +17,7 @@ function load() {
 }
 
 async function allEntries() {
-    const postEntry = await fetch("http://localhost:3000/journal")
+    const postEntry = await fetch("https://chatterbox-1.herokuapp.com/journal")
     const data = await postEntry.json();
     return data
 }
@@ -91,8 +91,11 @@ function addEntry(e) {
             comment: []  
         })
     }
-    fetch("http://localhost:3000/journal", options)
-    window.location.reload()
+    fetch("https://chatterbox-1.herokuapp.com/journal", options)
+    // window.location.reload()
+    setTimeout(() => {
+        window.location.reload()
+    }, 500);
    
 }
 
@@ -113,8 +116,11 @@ function addComment(postId, input) {
             message: input
         })
     }
-    fetch(`http://localhost:3000/journal/${postId}/comments`, options)
-    window.location.reload()
+    fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}/comments`, options)
+    setTimeout(() => {
+        window.location.reload()
+    }, 500);
+   
 }
 
 // async function getEmojiCount(postId) {
@@ -124,7 +130,7 @@ function addComment(postId, input) {
 
 
 async function makeFeed() {
-    const entries = await fetch("http://localhost:3000/journal")
+    const entries = await fetch("https://chatterbox-1.herokuapp.com/journal")
     let entriesData = await entries.json();
     // console.log(entriesData)
     const entriesFeed = document.getElementById("feedbox")
@@ -158,6 +164,7 @@ async function makeFeed() {
         const commentsBtn = document.createElement("button")
         const unhideComments = document.createElement("button")
         unhideComments.textContent = "🗨"
+        const commentsCount = document.createElement("p")
 
         // unhideComments.setAttribute("id",`unhideComments${postId}`)
       
@@ -189,6 +196,7 @@ async function makeFeed() {
 
         //emoji 
         emojiDiv.appendChild(unhideComments)
+        emojiDiv.appendChild(commentsCount)
         emojiDiv.appendChild(emoji1Button)
         emojiDiv.appendChild(emoji1count)
         emojiDiv.appendChild(emoji2Button)
@@ -218,12 +226,13 @@ async function makeFeed() {
             const input = e.target.previousSibling.value
             addComment(postId, input)
         })
-        const result = await fetch(`http://localhost:3000/journal/${postId}`)   
+        const result = await fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}`)   
         const data = await result.json()
         console.log(data)
         emoji1count.textContent = data.emoji[0].counter
         emoji2count.textContent = data.emoji[1].counter
         emoji3count.textContent = data.emoji[2].counter
+        commentsCount.textContent = data.comment.length
 
         emoji1Button.addEventListener("click", async (e) => {
             e.preventDefault()
@@ -239,7 +248,7 @@ async function makeFeed() {
                     
                 })
             }
-            fetch(`http://localhost:3000/journal/${postId}/emoji/1`, options)
+            fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}/emoji/1`, options)
             emoji1count.textContent = data.emoji[0].counter + 1
         })   
         emoji2Button.addEventListener("click", async (e) => {
@@ -256,7 +265,7 @@ async function makeFeed() {
                     
                 })
             }
-            fetch(`http://localhost:3000/journal/${postId}/emoji/2`, options)
+            fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}/emoji/2`, options)
             emoji2count.textContent = data.emoji[1].counter + 1
         })  
         emoji3Button.addEventListener("click", async (e) => {
@@ -273,7 +282,7 @@ async function makeFeed() {
                     
                 })
             }
-            fetch(`http://localhost:3000/journal/${postId}/emoji/3`, options)
+            fetch(`https://chatterbox-1.herokuapp.com/journal/${postId}/emoji/3`, options)
             emoji3count.textContent = data.emoji[2].counter + 1
         })  
 
