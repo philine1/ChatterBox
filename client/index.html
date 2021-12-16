@@ -6,16 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/2f742a5ea7.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <script src="scripts/scripts.js" defer></script>
     <title>Chatter Box</title>
 </head>
 <body>
-    <header>
-        <div class="container jumbotron text-center">
-            <h1 class="text-center">Chatter Box - lets Chat!😎</h1>
-        </div>
-    </header>
+
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="home">
+                    <i class="fas fa-home"></i>  
+                </a>
+                <a href="#title" class="nav-link">
+                    <span id="chatter">Chat</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+        
     <main>
+        <div class="container text-center" id="title">
+            <h1 class="text-center">Chatter Box - lets Chat!</h1>
+            <i class="material-icons" style="font-size:40px;color:white;">forum</i>
+        </div>
         <section id="Comments">
             <div class="container">
                 <div class="row">
@@ -23,19 +39,21 @@
                         <form action="" class="chat-form">
                             <div class="form-group">
                                 <label class="font-weight-bold" id="chat-name" for="name">Name:</label>
-                                <input class="form-control" id="name" name="name">
+                                <input class="form-control border border-info" id="name" name="name">
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" id="chat-message" for="message">Message:</label>
-                                <textarea class="form-control" rows="5" id="message" name="message" maxlength="150" placeholder="What's on your mind..."></textarea>
+                                <textarea class="form-control border border-info" rows="5" id="message" name="message" maxlength="150" placeholder="What's on your mind..."></textarea>
                             </div>
                             <div id="my-textarea-remaining-chars">150 characters remaining</div>
                             <div class="form-group">
-                                <label class="font-weight-bold" id="gif-search" for="search">Add a Gif!:</label>
-                                <input class="form-control" id="search" name="search" type="search">
-                                <button id="btnSearch" class="btn btn-primary">Gif!</button>
+                                <input class="form-control border border-info" id="search" name="search" type="search" placeholder="Search a gif">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button id="btnSearch" class="btn btn-info rounded-pill">GIF</button>
+                            <button type="submit" class="btn btn-info rounded-pill">Chat</button>
+                            <div id="gif-view">
+
+                            </div>
                         </form>
                     </div>
 
@@ -43,8 +61,11 @@
 
 
             </div>
+            <hr>   
         </section>
         <section id="feed">
+            <h3 id="feed-title">Chatter Box Posts <i class="material-icons" style="font-size:40px;color:white;">forum</i></h3>
+            <hr>
             <div class="container" >
                 <div class="row">
                     <div class="col chats">
