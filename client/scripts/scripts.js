@@ -160,6 +160,7 @@ async function makeFeed() {
         emoji2Button.textContent = emojiOptions[1]
         emoji3Button.textContent = emojiOptions[2]
 
+        emojiDiv.classList.add("emojiDiv")
         
         // comments
         const commentsDiv = document.createElement("div")

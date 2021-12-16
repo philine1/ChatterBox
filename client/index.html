@@ -35,22 +35,24 @@
         <section id="Comments">
             <div class="container">
                 <div class="row">
-                    <div class="col">
+                    <div class="col writeEntryBox">
                         <form action="" class="chat-form">
                             <div class="form-group">
                                 <label class="font-weight-bold" id="chat-name" for="name">Name:</label>
-                                <input class="form-control border border-info" id="name" name="name">
+                                <input class="form-control border border-info inputStyle inputStyleName" id="name" name="name">
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold" id="chat-message" for="message">Message:</label>
-                                <textarea class="form-control border border-info" rows="5" id="message" name="message" maxlength="150" placeholder="What's on your mind..."></textarea>
+                                <textarea class="form-control border border-info inputStyle inputStyleMessage" rows="5" id="message" name="message" maxlength="150" placeholder="What's on your mind..."></textarea>
                             </div>
                             <div id="my-textarea-remaining-chars">150 characters remaining</div>
                             <div class="form-group">
                                 <input class="form-control border border-info" id="search" name="search" type="search" placeholder="Search a gif">
                             </div>
-                            <button id="btnSearch" class="btn btn-info rounded-pill">GIF</button>
-                            <button type="submit" class="btn btn-info rounded-pill">Chat</button>
+                            <div class="entryBtnsDiv">
+                                <button id="btnSearch" class="btn btn-info rounded-pill entryBtns">GIF</button>
+                                <button type="submit" class="btn btn-info rounded-pill entryBtns">Chat</button>
+                            </div>
                             <div id="gif-view">
 
                             </div>

@@ -1,9 +1,76 @@
-.entrybox {
-    border: 3px solid #224748;
-    border-radius: 5px;
-    margin: 5px;
+@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;1,100&display=swap');
+
+*{
+     font-family: 'Roboto', sans-serif;
+}
+body {
+    color: black;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+ 
+main {
+    margin-left: 5rem;
+}
+/* Write Entry Box styling */
+.writeEntryBox {
+    background: #224748;
+    padding: 2rem 2rem;
+    border-radius: 1.625rem;
 }
 
+#my-textarea-remaining-chars {
+    border-bottom: 2px solid #32696B;
+    padding-bottom: 1rem;
+}
+
+
+
+.form-group {
+    padding-top: 0.5rem
+}
+
+.inputStyle {
+    border: none;
+    border-radius: 1.625rem;
+    padding: 0 3.5rem 0 1.5rem;
+}
+
+.inputStyleName {
+    padding: 1.5rem;
+}
+
+.inputStyleMessage {
+    padding: 2rem;
+}
+
+.entryBtnsDiv {
+    display: flex;
+    justify-content: right;
+}
+
+.entryBtns {
+    margin-left: 0.4rem;
+}
+
+/* Chatter Box Posts */
+.entrybox {
+    border: 3px solid #224748;
+    background: #224748;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+.emojiDiv {
+    display:flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    border-top: 2px solid #32696B;
+}
 img {
     display: block;
   margin-left: auto;
@@ -33,16 +100,6 @@ hr {
     --bg-secondary: #141418;
 }
 
-body {
-    color: black;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-}
- 
-main {
-    margin-left: 5rem;
-}
 
 .navbar {
     width: 5rem;
