@@ -14,3 +14,7 @@
 .commentsMsgDiv {
     border: 1px solid green;
 }
+
+.hidden {
+    display: none;
+}

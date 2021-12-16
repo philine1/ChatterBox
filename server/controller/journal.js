@@ -37,7 +37,7 @@ router.get("/journal/:id/comments", (req,res) => {
 router.post("/journal", (req,res) => {
     console.log("Route reached");
     // pushing what we send to journalData in the request.body
-    console.log(req.body);
+    // console.log(req.body);
     const data = req.body;
     const newEntry = journalEntry.createEntry(data)
     console.log("new entry created")
@@ -48,17 +48,18 @@ router.patch("/journal/:id/comments", (req,res) => {
     const commentData = req.body
     const id = req.params.id
     const updateEntry = new journalEntry(journalEntry.getId(id))
-    console.log("hi")
+    // console.log("hi")
     updateEntry.addComment(id, commentData)
     res.send("new comment created")
 })
 
 router.patch("/journal/:id/emoji/:emojiid", (req,res) => {
     const data = req.body
-    const id = req.params.id
-    const emojiId = req.params.emojiid
+    const id = data.id
+    const emojiId = data.emojiId
+    console.log(emojiId + " hihihihi" ) 
     const updateEntry = new journalEntry(journalEntry.getId(id))
-    console.log(updateEntry)
+    // console.log(updateEntry)
     updateEntry.addEmoji(id, emojiId, data)
     res.send("emoji added to entry")
 })

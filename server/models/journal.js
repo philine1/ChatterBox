@@ -48,8 +48,9 @@ class journalEntry {
     // function to increase emoji
     addEmoji(id, emojiId, data) {
         const emojiCount = parseInt(data.count)
+      
         const currentEntry = journalData[id-1]
-        currentEntry.emoji[emojiId-1].count = emojiCount + 1;
+        currentEntry.emoji[emojiId-1].counter = emojiCount + 1;
     }
 
     // function to add new comment onto entry
