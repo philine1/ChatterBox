@@ -11,3 +11,4 @@ app.use("/", journalRoutes)
 
 
 module.exports = app;
+

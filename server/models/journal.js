@@ -5,6 +5,7 @@ class journalEntry {
     constructor(entry) {
         this.id = entry.id
         this.author = entry.author
+        this.gif = entry.gif
         this.comment = entry.comment
         this.emoji = entry.emoji
         this.date = entry.date
