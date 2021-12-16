@@ -25,10 +25,8 @@ main {
     padding-bottom: 1rem;
 }
 
-
-
 .form-group {
-    padding-top: 0.5rem
+    padding-top: 0.5rem;
 }
 
 .inputStyle {
@@ -55,6 +53,7 @@ main {
 }
 
 /* Chatter Box Posts */
+/* emoji row */
 .entrybox {
     border: 3px solid #224748;
     background: #224748;
@@ -63,14 +62,115 @@ main {
 }
 .emojiDiv {
     display:flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0.5rem 0;
     margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
-    width: 95%;
+    width: 84%;
     border-top: 2px solid #32696B;
 }
+
+.emojiButtons {
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.emojiButtons:focus {
+    outline: none;
+}
+
+.emojiDivForButtons {
+    display: flex;
+    padding: 0.5rem 3.5rem;
+    margin: 0 1rem;
+    font-size: 22px;
+}
+
+.emojiDivForButtons:hover {
+    background: #32696B;
+    transition: 1s;
+
+}
+
+.emojiDivForButtons:focus {
+    background: #32696B;
+}
+
+.emojiDivForButtons p {
+    margin: auto 0;
+}
+
+/* comments row */ 
+
+
+.timePosted {
+    font-size: 10px;
+}
+
+.commentsDiv {
+    width: 84%;
+    margin: 0 auto;
+    border-top: 2px solid #32696B;
+}
+
+.commentsDivWithButton {
+    display: flex;
+    justify-content: space-around;
+}
+
+#commentsInput {
+    border-radius: 1.625rem;
+    width: 70%;
+    min-height: 3.5vh;
+    background: #32696B;
+    margin-top: 1rem;
+}
+
+#commentsInput::placeholder {
+    color: #224748;
+    padding-left: 0.4rem;
+    font-size: 20px;
+}
+
+#commentsInput:focus {
+    padding-left: 0.4rem;
+}
+
+#commentsSubmit {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    color: white;
+    background: red;
+    margin-top: auto;
+      
+}
+
+.commentsEntryDiv {
+    margin: 1rem;
+  
+}
+
+.commentsMsgDiv {
+    background: #32696B;
+    border-radius:  1.625rem;
+    padding: 0.7rem;
+    margin: 0.8rem;
+  
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
 img {
     display: block;
   margin-left: auto;
@@ -160,22 +260,6 @@ main {
 
 #title {
     
-}
-
-.timePosted {
-    font-size: 10px;
-}
-
-.commentsDiv {
-    border: 1px solid red;
-}
-
-.commentsMsgDiv {
-    border: 1px solid green;
-}
-
-.hidden {
-    display: none;
 }
 
 
