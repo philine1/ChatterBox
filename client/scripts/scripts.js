@@ -33,6 +33,9 @@ function sendApiRequest(){
     document.getElementById("btnSearch").addEventListener("click", e => {
         e.preventDefault();
         
+        const gifBtn = document.querySelector("#search");
+        gifBtn.style.display = "block"
+
         
         let userInput = document.getElementById("search").value.trim();
         console.log(userInput)
@@ -49,8 +52,8 @@ function sendApiRequest(){
                 img.src = content.data[Math.floor(Math.random() * 5)].images.downsized.url;
                 img.alt = content.data[0].title;
                 fig.appendChild(img);
-                let feedbox = document.querySelector("#feedbox");
-                feedbox.insertAdjacentElement("afterbegin", fig);
+                let gifView = document.querySelector("#gif-view");
+                gifView.insertAdjacentElement("afterbegin", fig);
                 document.querySelector("#search").value = "";
                        
             })
