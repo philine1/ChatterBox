@@ -33,12 +33,12 @@ hr {
     --bg-secondary: #141418;
 }
 
-body {
+/* body {
     color: black;
     background-color: white;
     margin: 0;
     padding: 0;
-}
+} */
  
 main {
     margin-left: 5rem;
@@ -122,3 +122,53 @@ main {
 }
 
 
+/* body{
+    background-image: url('image.jpeg');
+    background-size: cover;
+    background-position: center;
+    
+} */
+
+.homepage{
+        background-image: url('image.jpeg');
+        background-size: center;
+        background-position: center;
+        
+        
+}
+#h1{
+    font-family: 'Anton', sans-serif; 
+    color: white;
+    text-align: center;
+    margin: 0;
+    font-size: 50px;
+    padding-top: 20%;
+} 
+
+#p{
+    font-family:'Anton', sans-serif;
+    color:white;
+    text-align: center;
+    margin:0;
+    font-size: 40px;
+    font-weight: 10;
+    
+}
+
+.text-center{
+    font-family: 'Anton', sans-serif;
+    font-size: 20px
+}
+#ref{
+    background-color: rgb(5, 71, 55); 
+    border: 0;
+    align-items: center;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px; 
+    margin: 10%;
+  position: absolute;
+  margin-left: 40%
+  
+ } 
