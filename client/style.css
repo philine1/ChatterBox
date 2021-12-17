@@ -194,6 +194,12 @@ main {
     font-size: 16px;
     font-weight: bold;
 }
+
+.commentsMessage {
+    font-size: 18px;
+    margin-left: 0.1rem;
+}
+
 img {
     display: block;
   margin-left: auto;
