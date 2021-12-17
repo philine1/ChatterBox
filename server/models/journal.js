@@ -1,8 +1,5 @@
 const journalData = require("../data");
 const dayjs = require("dayjs");
-var relativeTime = require('dayjs/plugin/relativeTime');
-dayjs.extend(relativeTime)
-
 
 class journalEntry {
     constructor(entry) {
@@ -22,7 +19,7 @@ class journalEntry {
 
     // Method for creating a new entry
     static createEntry(entry) {
-        const time = dayjs().fromNow().toString();
+        const time = dayjs().format('DD/MM/YYYY').toString();
         const newEntry = new journalEntry({
             id: journalData.length + 1,
             ...entry,

@@ -115,7 +115,7 @@ function addComment(postId, input) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ 
-            author: "Annonymous" + randomNumGenerator(),
+            author: "Annonymous-user-" + randomNumGenerator(),
             message: input
         })
     }
@@ -329,6 +329,8 @@ async function makeFeed() {
             commentsMessageDiv.appendChild(commentsMessageAuthor)
             commentsMessageDiv.appendChild(commentsMessage)
             commentsMessageDiv.classList.add("commentsMsgDiv")
+            commentsMessage.classList.add("commentsMessage")
+            commentsMessageAuthor.classList.add("commentsMessageAuthor")
 
             commentsMessageAuthor.textContent = entriesData[i].comment[j].author
             commentsMessage.textContent = entriesData[i].comment[j].message
