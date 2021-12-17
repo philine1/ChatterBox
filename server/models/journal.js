@@ -1,7 +1,6 @@
 const journalData = require("../data");
 const dayjs = require("dayjs");
 
-
 class journalEntry {
     constructor(entry) {
         this.id = entry.id
@@ -20,7 +19,7 @@ class journalEntry {
 
     // Method for creating a new entry
     static createEntry(entry) {
-        const time = dayjs().format('DD/MM/YYYY').toString();
+        const time = dayjs().toString();
         const newEntry = new journalEntry({
             id: journalData.length + 1,
             ...entry,
