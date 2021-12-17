@@ -322,14 +322,14 @@ async function makeFeed() {
             const commentsMessage = document.createElement("p")
             const commentsMessageDiv = document.createElement("div")
             const commentsMessageAuthor = document.createElement("p")
-            const commentsMsgTime = document.createElement("p")
+            const commentsMsgTime = document.createElement("span")
 
             // console.log(entriesData[i].comment)
             
             commentsEntryDiv.appendChild(commentsMessageDiv)
             commentsMessageDiv.appendChild(commentsMessageAuthor)
-            commentsMessageDiv.appendChild(commentsMessage)
             commentsMessageAuthor.appendChild(commentsMsgTime)
+            commentsMessageDiv.appendChild(commentsMessage)
             commentsMessageDiv.classList.add("commentsMsgDiv")
             commentsMessage.classList.add("commentsMessage")
             commentsMessageAuthor.classList.add("commentsMessageAuthor")
