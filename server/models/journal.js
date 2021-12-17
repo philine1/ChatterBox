@@ -1,5 +1,7 @@
 const journalData = require("../data");
 const dayjs = require("dayjs");
+var relativeTime = require('dayjs/plugin/relativeTime')
+dayjs.extend(relativeTime)
 
 class journalEntry {
     constructor(entry) {
