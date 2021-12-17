@@ -1,4 +1,4 @@
-const emojiOptions = ["😀", "😃", "😀"];
+const emojiOptions = ["👍", "😍", "👎"];
 const form = document.querySelector('form');
 const chatsFeed = document.querySelector('.chats');
 const apiKey = "74d7MBRbZL0YmhJiyOtbVF20N7j0XfUx"
@@ -115,7 +115,7 @@ function addComment(postId, input) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ 
-            author: "Annonymous" + randomNumGenerator(),
+            author: "Annonymous-user-" + randomNumGenerator(),
             message: input
         })
     }
@@ -155,33 +155,52 @@ async function makeFeed() {
         const emoji1count = document.createElement("p")
         const emoji2count = document.createElement("p")
         const emoji3count = document.createElement("p")
+        const emojiDivForButtons1 = document.createElement("div")
+        const emojiDivForButtons2 = document.createElement("div")
+        const emojiDivForButtons3 = document.createElement("div")
+        const emojiDivForButtons4 = document.createElement("div")
+        emojiDivForButtons1.classList.add("emojiDivForButtons")
+        emojiDivForButtons2.classList.add("emojiDivForButtons")
+        emojiDivForButtons3.classList.add("emojiDivForButtons")
+        emojiDivForButtons4.classList.add("emojiDivForButtons")
 
-        emoji1Button.textContent = emojiOptions[0]
-        emoji2Button.textContent = emojiOptions[1]
-        emoji3Button.textContent = emojiOptions[2]
+        emoji1Button.textContent = emojiOptions[0] 
+        emoji2Button.textContent = emojiOptions[1] 
+        emoji3Button.textContent = emojiOptions[2] 
 
+        emojiDiv.classList.add("emojiDiv")
+
+        emoji1Button.classList.add("emojiButtons")
+        emoji2Button.classList.add("emojiButtons")
+        emoji3Button.classList.add("emojiButtons")
         
         // comments
         const commentsDiv = document.createElement("div")
         const commentsInput = document.createElement("input")
         const commentsBtn = document.createElement("button")
         const unhideComments = document.createElement("button")
-        unhideComments.textContent = "🗨"
+        unhideComments.classList.add("emojiButtons")
+        unhideComments.textContent = "💬"
         const commentsCount = document.createElement("p")
 
         // unhideComments.setAttribute("id",`unhideComments${postId}`)
       
         commentsInput.setAttribute("id", "commentsInput")
+        commentsInput.setAttribute("placeholder", "Write a comment...")
         commentsBtn.setAttribute("id","commentsSubmit")
         commentsInput.type = "text"
         commentsBtn.textContent = "Add Comment"
         const commentsEntryDiv = document.createElement("div")
+        commentsEntryDiv.classList.add("commentsEntryDiv")
 
 
         author.textContent = "Posted by: " + entriesData[i].author
         time.textContent= " • " + entriesData[i].date
         message.textContent = entriesData[i].message
         gif.src= entriesData[i].gif
+
+        author.classList.add("postAuthor")
+        message.classList.add("postMessage")
 
         const postId = entriesData[i].id
         entry.setAttribute("id",`${postId}`)
@@ -198,20 +217,30 @@ async function makeFeed() {
         entriesFeed.appendChild(entry)   
 
         //emoji 
-        emojiDiv.appendChild(unhideComments)
-        emojiDiv.appendChild(commentsCount)
-        emojiDiv.appendChild(emoji1Button)
-        emojiDiv.appendChild(emoji1count)
-        emojiDiv.appendChild(emoji2Button)
-        emojiDiv.appendChild(emoji2count)
-        emojiDiv.appendChild(emoji3Button)
-        emojiDiv.appendChild(emoji3count)
+
+        emojiDiv.appendChild(emojiDivForButtons1)
+        emojiDiv.appendChild(emojiDivForButtons2)
+        emojiDiv.appendChild(emojiDivForButtons3)
+        emojiDiv.appendChild(emojiDivForButtons4)
+
+        emojiDivForButtons1.appendChild(unhideComments)
+        emojiDivForButtons1.appendChild(commentsCount)
+        emojiDivForButtons2.appendChild(emoji1Button)
+        emojiDivForButtons2.appendChild(emoji1count)
+        emojiDivForButtons3.appendChild(emoji2Button)
+        emojiDivForButtons3.appendChild(emoji2count)
+        emojiDivForButtons4.appendChild(emoji3Button)
+        emojiDivForButtons4.appendChild(emoji3count)
 
         // comments
+        const commentsDivWithButton = document.createElement("div")
+        commentsDivWithButton.classList.add("commentsDivWithButton")
+        
         entry.appendChild(emojiDiv)
         entry.appendChild(commentsDiv)
-        commentsDiv.appendChild(commentsInput)
-        commentsDiv.appendChild(commentsBtn)
+        commentsDiv.appendChild(commentsDivWithButton)
+        commentsDivWithButton.appendChild(commentsInput)
+        commentsDivWithButton.appendChild(commentsBtn)
         commentsDiv.appendChild(commentsEntryDiv)
 
         commentsDiv.setAttribute("id", `commentsDiv${postId}`)
@@ -290,18 +319,23 @@ async function makeFeed() {
         })  
 
         for(let j = 0; j<entriesData[i].comment.length; j++) {
+            const commentsMsgTime = document.createElement("span")
             const commentsMessage = document.createElement("p")
             const commentsMessageDiv = document.createElement("div")
             const commentsMessageAuthor = document.createElement("p")
-
+            
             // console.log(entriesData[i].comment)
             
             commentsEntryDiv.appendChild(commentsMessageDiv)
+            commentsMessageAuthor.appendChild(commentsMsgTime)
             commentsMessageDiv.appendChild(commentsMessageAuthor)
             commentsMessageDiv.appendChild(commentsMessage)
             commentsMessageDiv.classList.add("commentsMsgDiv")
+            commentsMessage.classList.add("commentsMessage")
+            commentsMessageAuthor.classList.add("commentsMessageAuthor")
 
             commentsMessageAuthor.textContent = entriesData[i].comment[j].author
+            commentsMsgTime.textContent = " • " + entriesData[i].comment[j].date
             commentsMessage.textContent = entriesData[i].comment[j].message
             
         }

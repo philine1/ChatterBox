@@ -1,7 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Open+Sans:ital,wght@0,300;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;1,100&display=swap');
+
+*{
+     font-family: 'Roboto', sans-serif;
+}
+body {
+    color: black;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+ 
+main {
+    margin-left: 5rem;
+}
+/* Write Entry Box styling */
+.writeEntryBox {
+    background: #224748;
+    padding: 2rem 2rem;
+    border-radius: 1.625rem;
+}
+
+#my-textarea-remaining-chars {
+    border-bottom: 2px solid #32696B;
+    padding-bottom: 1rem;
+}
+
+.form-group {
+    padding-top: 0.5rem;
+}
+
+.inputStyle {
+    border: none;
+    border-radius: 1.625rem;
+    padding: 0 3.5rem 0 1.5rem;
+}
+
+.inputStyleName {
+    padding: 1.5rem;
+}
+
+.inputStyleMessage {
+    padding: 2rem;
+}
+
+.entryBtnsDiv {
+    display: flex;
+    justify-content: right;
+}
+
+.entryBtns {
+    margin-left: 0.4rem;
+}
+
+/* Chatter Box Posts */
+/* emoji row */
 .entrybox {
     border: 3px solid #224748;
+    background: #224748;
     border-radius: 5px;
-    margin: 5px;
+    margin: 20px 0;
+}
+.emojiDiv {
+    display:flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 84%;
+    border-top: 2px solid #32696B;
+}
+
+.emojiButtons {
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.emojiButtons:focus {
+    outline: none;
+}
+
+.emojiDivForButtons {
+    display: flex;
+    padding: 0.5rem 3.5rem;
+    margin: 0 1rem;
+    font-size: 22px;
+}
+
+.emojiDivForButtons:hover {
+    background: #32696B;
+    transition: 1s;
+
+}
+
+.emojiDivForButtons:focus {
+    background: #32696B;
+}
+
+.emojiDivForButtons p {
+    margin: auto 0;
+}
+
+/* comments row */ 
+
+
+
+
+.commentsDiv {
+    width: 84%;
+    margin: 0 auto;
+    border-top: 2px solid #32696B;
+}
+
+.commentsDivWithButton {
+    display: flex;
+    justify-content: space-around;
+}
+
+#commentsInput {
+    border-radius: 1.625rem;
+    width: 70%;
+    min-height: 3.5vh;
+    background: #32696B;
+    margin-top: 1rem;
+    color:white;
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+#commentsInput::placeholder {
+    color: #224748;
+    padding-left: 0.4rem;
+    font-size: 20px;
+}
+
+#commentsInput:focus {
+    padding-left: 0.4rem;
+    outline: none;
+}
+/* FIX*/
+#commentsSubmit {
+    border: none;
+    background: #5BC0DE;
+    border-radius: 1.625rem;
+    font-size: 18px;
+    color: white;
+    margin-top: 16.5px;
+      
+}
+
+.commentsEntryDiv {
+    margin: 1rem;
+}
+
+.commentsMsgDiv {
+    background: #32696B;
+    border-radius:  1.625rem;
+    padding: 0.7rem;
+    margin: 0.8rem;
+  
+}
+
+.hidden {
+    display: none;
+}
+
+/* post text */
+
+.postAuthor {
+    font-size: 20px;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    
+}
+
+.timePosted {
+    font-size: 16px;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.postMessage {
+    font-size: 20px;
+    right: 20;  
+    width: 80%;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0.2rem;
+    font-size: 26px;
+}
+
+.commentsMessageAuthor {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.commentsMessage {
+    font-size: 18px;
+    margin-left: 0.1rem;
 }
 
 img {
@@ -33,16 +233,6 @@ hr {
     --bg-secondary: #141418;
 }
 
-/* body {
-    color: black;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-} */
- 
-main {
-    margin-left: 5rem;
-}
 
 .navbar {
     width: 5rem;
@@ -97,29 +287,11 @@ a:hover {
 }
 
 main {
-    background-image: url("assets/wp4410743-chat-wallpapers.png");
+    background-image: linear-gradient(rgba(3, 8, 24, 0),rgba(3,8,24,0.7)),url("assets/wp4410743-chat-wallpapers.png");
     color: whitesmoke;
 }
 
-#title {
-    
-}
 
-.timePosted {
-    font-size: 10px;
-}
-
-.commentsDiv {
-    border: 1px solid red;
-}
-
-.commentsMsgDiv {
-    border: 1px solid green;
-}
-
-.hidden {
-    display: none;
-}
 
 
 /* body{
