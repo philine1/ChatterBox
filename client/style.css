@@ -235,10 +235,13 @@ hr {
 
 
 .navbar {
-    width: 5rem;
+    width: 6rem;
     height: 100vh;
     position: fixed;
     background-color: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
 }
 
 .navbar-nav {
@@ -253,8 +256,6 @@ hr {
 
 .nav-item {
     width: 100%;
-    padding-bottom:600px;
-
 }
 
 .nav-link {
@@ -327,10 +328,20 @@ main {
     
 }
 
+
+#title {
+    padding-bottom: 3.2rem;
+    padding-top: 1rem;
+}
 .text-center{
     font-family: 'Anton', sans-serif;
-    font-size: 20px
+    font-size: 60px
 }
+
+#feed-title {
+    font-weight: bold;
+}
+
 #ref{
     background-color: rgb(5, 71, 55); 
     border: 0;
