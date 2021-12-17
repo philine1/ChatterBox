@@ -54,7 +54,7 @@ class journalEntry {
     addComment(id, commentData) {
         const commentEntry = commentData.message
         const currentEntry = journalData[id-1]
-        const commentDate = commentData.date   
+        const commentDate = dayjs().format('DD/MM/YYYY').toString()   
         const currentId = currentEntry.comment.length  
 
         currentEntry.comment.push( {
