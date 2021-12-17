@@ -126,6 +126,9 @@ main {
     min-height: 3.5vh;
     background: #32696B;
     margin-top: 1rem;
+    color:white;
+    margin-left: 5px;
+    font-size: 18px;
 }
 
 #commentsInput::placeholder {
@@ -141,8 +144,9 @@ main {
 /* FIX*/
 #commentsSubmit {
     border: none;
-    background: transparent;
-    font-size: 20px;
+    background: #5BC0DE;
+    border-radius: 1.625rem;
+    font-size: 18px;
     color: white;
     margin-top: 16.5px;
       
@@ -283,7 +287,7 @@ a:hover {
 }
 
 main {
-    background-image: url("assets/wp4410743-chat-wallpapers.png");
+    background-image: linear-gradient(rgba(3, 8, 24, 0),rgba(3,8,24,0.7)),url("assets/wp4410743-chat-wallpapers.png");
     color: whitesmoke;
 }
 
