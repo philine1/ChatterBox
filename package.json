@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --silent --watchAll",
+    "coverage": "jest --coverage --silent",
     "start": "node ./server/index.js",
     "dev": "nodemon ./server/index.js"
   },
@@ -20,5 +21,9 @@
     "dayjs": "^1.10.7",
     "express": "^4.17.1",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "jest": "^27.4.5",
+    "supertest": "^6.1.6"
   }
 }
